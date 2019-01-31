@@ -16,6 +16,7 @@
 
 class Message < ApplicationRecord
   MESSANGERS = %w(telegram viber whatsapp).freeze
+  NUMBER_MAX = 5
   STATUS = %w(not_delivered in_process delivered).freeze
 
   validates :messanger, :body, :recipient, :time_of_the_sending, :status, :number, :number_max, presence: true
