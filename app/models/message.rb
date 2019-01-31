@@ -15,8 +15,10 @@
 #
 
 class Message < ApplicationRecord
-  MESSANGERS = %i(telegram viber whatsapp).freeze
-  STATUS = %i(not_delivered in_process delivered).freeze
+  MESSANGERS = %w(telegram viber whatsapp).freeze
+  STATUS = %w(not_delivered in_process delivered).freeze
 
   validates :messanger, :body, :recipient, :time_of_the_sending, :status, :number, :number_max, presence: true
+  validates :messanger, inclusion: { in: MESSANGERS }
+  validates :status, inclusion: { in: STATUS }
 end
