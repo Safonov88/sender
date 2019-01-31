@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_01_31_132023) do
 
   create_table "messages", force: :cascade do |t|
+    t.integer "sender_id", null: false
     t.string "messanger", null: false
     t.text "body", null: false
     t.string "recipient", null: false
