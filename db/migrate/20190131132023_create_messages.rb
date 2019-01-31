@@ -1,0 +1,15 @@
+class CreateMessages < ActiveRecord::Migration[5.2]
+  def change
+    create_table :messages do |t|
+      t.string :messanger,              null: false
+      t.text :body,                     null: false
+      t.string :recipient,              null: false
+      t.datetime :time_of_the_sending,  null: false
+      t.string :status,                 null: false
+      t.integer :number,                null: false
+      t.integer :number_max,            null: false
+
+      t.timestamps
+    end
+  end
+end
