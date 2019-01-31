@@ -24,4 +24,12 @@ class Message < ApplicationRecord
             :status, :number, :number_max, presence: true
   validates :messanger, inclusion: { in: MESSANGERS }
   validates :status, inclusion: { in: STATUS }
+  validate :spam
+
+  private
+  def spam
+    if Message.find_by(body: body, recipient: recipient, created_at: 1.hour.ago..Time.now).present?
+      errors.add(:body, 'Такое сообщение уже было отправлено этому пользователю')
+    end
+  end
 end
