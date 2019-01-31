@@ -15,4 +15,5 @@
 #
 
 class Message < ApplicationRecord
+  validates :messanger, :body, :recipient, :time_of_the_sending, :status, :number, :number_max, presence: true
 end
