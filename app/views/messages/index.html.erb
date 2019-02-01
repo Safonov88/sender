@@ -1,1 +1,23 @@
 <h1>index messages</h1>
+
+<%= form_with(url: '/messages', method: 'post') do %>
+  <%= label(:message, 'Telegram') %>
+  <%= check_box_tag('message[messanger][]', :telegram) %><br>
+  <%= label(:message, 'Viber') %>
+  <%= check_box_tag('message[messanger][]', :viber) %><br>
+  <%= label(:message, 'WatsApp') %>
+  <%= check_box_tag('message[messanger][]', :watsapp) %><br>
+  <%= label(:message, 'Сообщение') %>
+  <%= text_field(:message, :body) %><br>
+  <%= label(:message, 'Получатель1') %>
+  <%= text_field_tag('message[recipient][]') %><br>
+  <%= label(:message, 'Получатель2') %>
+  <%= text_field_tag('message[recipient][]') %><br>
+  <%= label(:message, 'Получатель3') %>
+  <%= text_field_tag('message[recipient][]') %><br>
+  <%= label(:message, 'Получатель4') %>
+  <%= text_field_tag('message[recipient][]') %><br>
+  <%= label(:message, 'Доставить:') %>
+  <%= datetime_local_field(:message, :time_of_the_sending) %>
+  <%= submit_tag('Отправить') %>
+<% end %>
