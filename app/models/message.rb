@@ -24,7 +24,7 @@ class Message < ApplicationRecord
             :status, :number, :number_max, presence: true
   validates :messanger, inclusion: { in: MESSANGERS }
   validates :status, inclusion: { in: STATUS }
-  validate :spam
+  validate :spam, on: :create
 
   scope :not_delivered, -> { where(status: :not_delivered) }
   scope :sending_limit, -> { where('number < number_max') }
