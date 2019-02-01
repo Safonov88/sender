@@ -1,6 +1,7 @@
 <h1>index messages</h1>
 
 <%= form_with(url: '/messages', method: 'post') do %>
+  <%= hidden_field_tag('message[sender_id]', 1) %>
   <%= label(:message, 'Telegram') %>
   <%= check_box_tag('message[messanger][]', :telegram) %><br>
   <%= label(:message, 'Viber') %>
