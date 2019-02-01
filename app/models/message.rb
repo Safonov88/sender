@@ -9,7 +9,7 @@
 #  recipient           :string           not null
 #  time_of_the_sending :datetime         not null
 #  status              :string           default("in_process"), not null
-#  number              :integer          default(1), not null
+#  number              :integer          default(0), not null
 #  number_max          :integer          not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -24,7 +24,7 @@ class Message < ApplicationRecord
             :status, :number, :number_max, presence: true
   validates :messanger, inclusion: { in: MESSANGERS }
   validates :status, inclusion: { in: STATUS }
-  # validate :spam
+  validate :spam
 
   scope :not_delivered, -> { where(status: :not_delivered) }
   scope :sending_limit, -> { where('number < number_max') }
@@ -35,7 +35,7 @@ class Message < ApplicationRecord
 
   private
   def spam
-    if Message.find_by(body: body, recipient: recipient, created_at: 1.hour.ago..Time.now).present?
+    if Message.find_by(messanger: messanger, body: body, recipient: recipient, created_at: 1.hour.ago..Time.now).present?
       errors.add(:body, 'Такое сообщение уже было отправлено этому пользователю')
     end
   end

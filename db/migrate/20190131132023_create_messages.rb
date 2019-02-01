@@ -7,7 +7,7 @@ class CreateMessages < ActiveRecord::Migration[5.2]
       t.string :recipient,              null: false
       t.datetime :time_of_the_sending,  null: false
       t.string :status,                 null: false, default: :in_process
-      t.integer :number,                null: false, default: 1
+      t.integer :number,                null: false, default: 0
       t.integer :number_max,            null: false
 
       t.timestamps
