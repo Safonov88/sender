@@ -4,16 +4,14 @@ class MessagesController < ApplicationController
   def create
     prm = message_params
 
+    prm[:time_of_the_sending] = Time.now if prm[:time_of_the_sending].blank?
+
     prm[:messanger].each do |m|
       prm[:recipient].each do |r|
-        message = Message.new(sender_id: prm[:sender_id], messanger: m, body: prm[:body]
+        message = Message.new(sender_id: prm[:sender_id], messanger: m, body: prm[:body],
                               recipient: r, time_of_the_sending: prm[:time_of_the_sending], number_max: Message::NUMBER_MAX)
 
-        if message.time_of_the_sending <= Time.now
-          SendMessageJob.perform_later message if message.save
-        else
-          SendMessageJob.set(wait_until: message.time_of_the_sending.perform_later message if message.save
-        end
+         SendMessageJob.set(wait_until: message.time_of_the_sending).perform_later message if message.save
       end
     end
   end

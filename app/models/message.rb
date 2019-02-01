@@ -8,8 +8,8 @@
 #  body                :text             not null
 #  recipient           :string           not null
 #  time_of_the_sending :datetime         not null
-#  status              :string           not null
-#  number              :integer          not null
+#  status              :string           default("in_process"), not null
+#  number              :integer          default(1), not null
 #  number_max          :integer          not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -24,7 +24,7 @@ class Message < ApplicationRecord
             :status, :number, :number_max, presence: true
   validates :messanger, inclusion: { in: MESSANGERS }
   validates :status, inclusion: { in: STATUS }
-  validate :spam
+  # validate :spam
 
   scope :not_delivered, -> { where(status: :not_delivered) }
   scope :sending_limit, -> { where('number < number_max') }

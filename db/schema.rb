@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2019_01_31_132023) do
     t.text "body", null: false
     t.string "recipient", null: false
     t.datetime "time_of_the_sending", null: false
-    t.string "status", null: false
-    t.integer "number", null: false
+    t.string "status", default: "in_process", null: false
+    t.integer "number", default: 1, null: false
     t.integer "number_max", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
