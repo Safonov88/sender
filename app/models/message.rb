@@ -30,7 +30,7 @@ class Message < ApplicationRecord
   scope :sending_limit, -> { where('number < number_max') }
 
   def self.send_now
-    Message.not_delivered.sending_limit.map { |m| SendMessageJob.perform_later m }
+    Message.not_delivered.sending_limit.map { |m| SendMessageJob.perform_now m }
   end
 
   private
