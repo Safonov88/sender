@@ -10,10 +10,14 @@
 ### Развёртывание приложения.
 1. Необходимо установить на локальной машине БД Postgres.
 2. Выполнить следующие команды
-...* ``` bundle ```
-...* ``` bundle exec rails db:setup ```
-...* ``` whenever --update-crontab ```
-...* ``` bundle exec rails s ```
+
+``` bundle ```
+
+``` bundle exec rails db:setup ```
+
+``` whenever --update-crontab ```
+
+``` bundle exec rails s ```
 
 ### API
 После развёртывания приложение начинает принимать POST запросы на http://localhost:3000/messages.
@@ -21,9 +25,13 @@
 Пример post запроса.
 
 message[sender_id]: 'идентификатор отправителя'
+
 message[messanger][]: 'название мессенджера'
+
 message[body]: 'текст сообщения'
+
 message[recipient][]: 'имя получателя'
+
 message[time_of_the_sending]: 'дата и время доставки сообщения'
 
 ### Дополнительно используемый gem.
