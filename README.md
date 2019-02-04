@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Тестовое задание
 
-Things you may want to cover:
+Прототип микросервиса обеспечивающий эмуляцию отправки сообщений в популярные мессенджеры.
+Приложение может быть развёрнуто только в операционных системах Linux.
+Дополнительно в приложении присутствует форма(на главной странице), для тестирования POST запросов.
 
-* Ruby version
 
-* System dependencies
+### Развёртывание приложения.
+1. Необходимо установить на локальной машине БД Postgres.
+2. Выполнить следующие команды
+...* ``` bundle ```
+...* ``` bundle exec rails db:setup ```
+...* ``` whenever --update-crontab ```
+...* ``` bundle exec rails s ```
 
-* Configuration
+### API
+После развёртывания приложение начинает принимать POST запросы на http://localhost:3000/messages.
 
-* Database creation
+Пример post запроса.
 
-* Database initialization
+message[sender_id]: 'идентификатор отправителя'
+message[messanger][]: 'название мессенджера'
+message[body]: 'текст сообщения'
+message[recipient][]: 'имя получателя'
+message[time_of_the_sending]: 'дата и время доставки сообщения'
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Дополнительно используемый gem.
+Whenever. Используется для запуска переодически выполняемой задачи(отправка недоставленных сообщений)
