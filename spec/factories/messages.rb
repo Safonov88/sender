@@ -3,7 +3,7 @@ FactoryBot.define do
     sender_id { 1 }
     messanger { :telegram }
     body { 'Тестовое сообщение' }
-    recipient { ["user #{rand(1..10)}", "user #{rand(11..20)}"] }
+    recipient { 'test_user' }
     time_of_the_sending { Time.now }
     number_max { Message::NUMBER_MAX }
   end
